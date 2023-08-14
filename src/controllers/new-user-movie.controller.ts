@@ -89,18 +89,24 @@ export class NewUserMovieController {
     },
   })
   async patch(
-    @param.path.string('id') id: string,
+    @inject(SecurityBindings.USER)
+    currentUserProfile: UserProfile,
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Movie, {partial: true}),
+          schema: getModelSchemaRef(Movie, {
+            partial: true,
+            exclude : ['id' , 'newUserId']
+          }),
         },
       },
     })
     movie: Partial<Movie>,
-    @param.query.object('where', getWhereSchemaFor(Movie)) where?: Where<Movie>,
+    // @param.query.object('where', getWhereSchemaFor(Movie)) where?: Where<Movie>,
+    @param.where(Movie) where?: Where<Movie>,
+    @param.path.number('id') id?: number,
   ): Promise<Count> {
-    return this.newUserRepository.movies(id).patch(movie, where);
+    return this.newUserRepository.movies(currentUserProfile[securityId]).patch(movie , {id : id});
   }
 
   @del('/new-users/{id}/movies', {
