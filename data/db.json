@@ -3,7 +3,7 @@
     "User": 3,
     "UserCredentials": 3,
     "NewUser": 1,
-    "Movie": 3
+    "Movie": 4
   },
   "models": {
     "User": {
@@ -15,7 +15,8 @@
     "NewUser": {},
     "Movie": {
       "1": "{\"name\":\"string\",\"genre\":\"string\",\"director\":\"string\",\"yearReleased\":0,\"newUserId\":\"1\",\"id\":1}",
-      "2": "{\"name\":\"avengers\",\"genre\":\"action\",\"director\":\"this is for test\",\"yearReleased\":2019,\"newUserId\":\"1\",\"id\":2}"
+      "2": "{\"name\":\"avengers\",\"genre\":\"action\",\"director\":\"this is for test\",\"yearReleased\":2019,\"newUserId\":\"1\",\"id\":2}",
+      "3": "{\"name\":\"openhimer\",\"genre\":\"action\",\"director\":\"new film\",\"yearReleased\":2023,\"newUserId\":\"1\",\"id\":3}"
     }
   }
 }

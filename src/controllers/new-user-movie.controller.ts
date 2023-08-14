@@ -51,7 +51,7 @@ export class NewUserMovieController {
     return this.newUserRepository.movies(id).find(filter);
   }
 
-  @post('/new-users/{id}/movies', {
+  @post('/new-users/movies', {
     responses: {
       '200': {
         description: 'NewUser model instance',
@@ -62,21 +62,21 @@ export class NewUserMovieController {
   async create(
     @inject(SecurityBindings.USER)
     currentUserProfile: UserProfile,
-    @param.path.string('id') id: typeof NewUser.prototype.id,
     @requestBody({
       content: {
         'application/json': {
           schema: getModelSchemaRef(Movie, {
             title: 'NewMovieInNewUser',
-            exclude: ['id'],
+            exclude: ['id' , 'newUserId'],
             optional: ['newUserId']
           }),
         },
       },
     }) movie: Omit<Movie, 'id'>,
   ): Promise<any> {
-    // return this.newUserRepository.movies(id).create(movie);
-    return currentUserProfile[securityId]
+    movie.newUserId = currentUserProfile[securityId]
+    return this.newUserRepository.movies(currentUserProfile[securityId]).create(movie);
+    // return currentUserProfile[securityId]
   }
 
   @patch('/new-users/{id}/movies', {
