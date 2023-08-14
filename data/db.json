@@ -3,7 +3,7 @@
     "User": 3,
     "UserCredentials": 3,
     "NewUser": 1,
-    "Movie": 4
+    "Movie": 5
   },
   "models": {
     "User": {
@@ -16,7 +16,8 @@
     "Movie": {
       "1": "{\"name\":\"string\",\"genre\":\"string\",\"director\":\"string\",\"yearReleased\":0,\"newUserId\":\"1\",\"id\":1}",
       "2": "{\"name\":\"avengers\",\"genre\":\"action\",\"director\":\"this is for test\",\"yearReleased\":2019,\"newUserId\":\"1\",\"id\":2}",
-      "3": "{\"name\":\"openhimer\",\"genre\":\"action\",\"director\":\"new film\",\"yearReleased\":2023,\"newUserId\":\"1\",\"id\":3}"
+      "3": "{\"name\":\"openhimer\",\"genre\":\"action\",\"director\":\"new film\",\"yearReleased\":2023,\"newUserId\":\"1\",\"id\":3}",
+      "4": "{\"name\":\"irom man\",\"genre\":\"takhayoli\",\"director\":\"this is about iron man\",\"yearReleased\":2004,\"newUserId\":\"2\",\"id\":4}"
     }
   }
 }

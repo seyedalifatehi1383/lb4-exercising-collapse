@@ -32,7 +32,7 @@ export class NewUserMovieController {
     @repository(NewUserRepository) protected newUserRepository: NewUserRepository,
   ) { }
 
-  @get('/new-users/{id}/movies', {
+  @get('/new-users/movies', {
     responses: {
       '200': {
         description: 'Array of NewUser has many Movie',
@@ -45,10 +45,11 @@ export class NewUserMovieController {
     },
   })
   async find(
-    @param.path.string('id') id: string,
+    @inject(SecurityBindings.USER)
+    currentUserProfile: UserProfile,
     @param.query.object('filter') filter?: Filter<Movie>,
   ): Promise<Movie[]> {
-    return this.newUserRepository.movies(id).find(filter);
+    return this.newUserRepository.movies(currentUserProfile[securityId]).find(filter);
   }
 
   @post('/new-users/movies', {
