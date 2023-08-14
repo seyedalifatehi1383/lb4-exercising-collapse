@@ -1,0 +1,110 @@
+import {
+  Count,
+  CountSchema,
+  Filter,
+  repository,
+  Where,
+} from '@loopback/repository';
+import {
+  del,
+  get,
+  getModelSchemaRef,
+  getWhereSchemaFor,
+  param,
+  patch,
+  post,
+  requestBody,
+} from '@loopback/rest';
+import {
+  NewUser,
+  Movie,
+} from '../models';
+import {NewUserRepository} from '../repositories';
+
+export class NewUserMovieController {
+  constructor(
+    @repository(NewUserRepository) protected newUserRepository: NewUserRepository,
+  ) { }
+
+  @get('/new-users/{id}/movies', {
+    responses: {
+      '200': {
+        description: 'Array of NewUser has many Movie',
+        content: {
+          'application/json': {
+            schema: {type: 'array', items: getModelSchemaRef(Movie)},
+          },
+        },
+      },
+    },
+  })
+  async find(
+    @param.path.number('id') id: number,
+    @param.query.object('filter') filter?: Filter<Movie>,
+  ): Promise<Movie[]> {
+    return this.newUserRepository.movies(id).find(filter);
+  }
+
+  @post('/new-users/{id}/movies', {
+    responses: {
+      '200': {
+        description: 'NewUser model instance',
+        content: {'application/json': {schema: getModelSchemaRef(Movie)}},
+      },
+    },
+  })
+  async create(
+    @param.path.number('id') id: typeof NewUser.prototype.id,
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(Movie, {
+            title: 'NewMovieInNewUser',
+            exclude: ['id'],
+            optional: ['newUserId']
+          }),
+        },
+      },
+    }) movie: Omit<Movie, 'id'>,
+  ): Promise<Movie> {
+    return this.newUserRepository.movies(id).create(movie);
+  }
+
+  @patch('/new-users/{id}/movies', {
+    responses: {
+      '200': {
+        description: 'NewUser.Movie PATCH success count',
+        content: {'application/json': {schema: CountSchema}},
+      },
+    },
+  })
+  async patch(
+    @param.path.number('id') id: number,
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(Movie, {partial: true}),
+        },
+      },
+    })
+    movie: Partial<Movie>,
+    @param.query.object('where', getWhereSchemaFor(Movie)) where?: Where<Movie>,
+  ): Promise<Count> {
+    return this.newUserRepository.movies(id).patch(movie, where);
+  }
+
+  @del('/new-users/{id}/movies', {
+    responses: {
+      '200': {
+        description: 'NewUser.Movie DELETE success count',
+        content: {'application/json': {schema: CountSchema}},
+      },
+    },
+  })
+  async delete(
+    @param.path.number('id') id: number,
+    @param.query.object('where', getWhereSchemaFor(Movie)) where?: Where<Movie>,
+  ): Promise<Count> {
+    return this.newUserRepository.movies(id).delete(where);
+  }
+}
