@@ -1,4 +1,5 @@
 import {inject} from '@loopback/core';
+import {authenticate} from '@loopback/authentication';
 
 import {
   Count,
@@ -33,10 +34,15 @@ import {
 import {NewUser} from '../models';
 import {NewUserRepository} from '../repositories';
 import {TokenService} from '@loopback/authentication';
-import {SecurityBindings, UserProfile} from '@loopback/security';
+import {SecurityBindings, UserProfile ,securityId} from '@loopback/security';
 import {genSalt, hash} from 'bcryptjs';
 import _ from 'lodash';
+
+
 // import {repository} from '@loopback/repository';
+
+
+
 
 
 const CredentialsSchema: SchemaObject = {
@@ -146,6 +152,30 @@ export class UserController {
     // create a JSON Web Token based on the user profile
     const token = await this.jwtService.generateToken(userProfile);
     return {token};
+  }
+
+
+
+  @authenticate('jwt')
+  @get('/whoAmI', {
+    responses: {
+      '200': {
+        description: 'Return current user',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'string',
+            },
+          },
+        },
+      },
+    },
+  })
+  async whoAmI(
+    @inject(SecurityBindings.USER)
+    currentUserProfile: UserProfile,
+  ): Promise<string |undefined> {
+    return currentUserProfile[securityId];
   }
 
   // @post('/new-users')
