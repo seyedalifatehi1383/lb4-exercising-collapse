@@ -118,9 +118,11 @@ export class NewUserMovieController {
     },
   })
   async delete(
-    @param.path.string('id') id: string,
-    @param.query.object('where', getWhereSchemaFor(Movie)) where?: Where<Movie>,
+    @inject(SecurityBindings.USER)
+    currentUserProfile: UserProfile,
+    @param.path.number('id') id: number,
+    // @param.query.object('where', getWhereSchemaFor(Movie)) where?: Where<Movie>,
   ): Promise<Count> {
-    return this.newUserRepository.movies(id).delete(where);
+    return this.newUserRepository.movies(currentUserProfile[securityId]).delete({id : id});
   }
 }
