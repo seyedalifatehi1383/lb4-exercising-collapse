@@ -1,0 +1,21 @@
+{
+  "ids": {
+    "User": 3,
+    "UserCredentials": 3,
+    "NewUser": 1,
+    "Movie": 3
+  },
+  "models": {
+    "User": {
+      "1": "{\"id\":\"1\",\"realm\":\"Asia\",\"username\":\"Mohammad\",\"email\":\"mamalreza83@gmail.com\",\"emailVerified\":true,\"verificationToken\":\"string\",\"additionalProp1\":{}}"
+    },
+    "UserCredentials": {
+      "52eff158-1831-4e05-988a-fadd1835aadb": "{\"id\":\"52eff158-1831-4e05-988a-fadd1835aadb\",\"password\":\"$2a$10$jr9xxLPm6bopN9gYWguHCO3tDKLKL2sqAfJyoTqX37uM42jngcGJO\",\"userId\":\"1\"}"
+    },
+    "NewUser": {},
+    "Movie": {
+      "1": "{\"name\":\"string\",\"genre\":\"string\",\"director\":\"string\",\"yearReleased\":0,\"newUserId\":\"1\",\"id\":1}",
+      "2": "{\"name\":\"avengers\",\"genre\":\"action\",\"director\":\"this is for test\",\"yearReleased\":2019,\"newUserId\":\"1\",\"id\":2}"
+    }
+  }
+}

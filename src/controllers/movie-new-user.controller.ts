@@ -11,7 +11,10 @@ import {
   NewUser,
 } from '../models';
 import {MovieRepository} from '../repositories';
-
+// ---------- ADD IMPORTS -------------
+import {authenticate} from '@loopback/authentication';
+// ------------------------------------
+@authenticate('jwt') // <---- Apply the @authenticate decorator at the class level
 export class MovieNewUserController {
   constructor(
     @repository(MovieRepository)

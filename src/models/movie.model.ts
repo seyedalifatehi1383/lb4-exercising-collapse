@@ -35,7 +35,7 @@ export class Movie extends Entity {
   yearReleased: number;
 
   @belongsTo(() => NewUser)
-  newUserId: number;
+  newUserId: string;
 
   constructor(data?: Partial<Movie>) {
     super(data);

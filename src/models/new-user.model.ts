@@ -11,6 +11,7 @@ export class NewUser extends User {
   //   generated: true,
   // })
   // id?: string |undefined;
+  
   @hasMany(() => Movie)
   movies: Movie[];
 

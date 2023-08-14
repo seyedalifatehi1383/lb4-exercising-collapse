@@ -20,7 +20,10 @@ import {
   Movie,
 } from '../models';
 import {NewUserRepository} from '../repositories';
-
+// ---------- ADD IMPORTS -------------
+import {authenticate} from '@loopback/authentication';
+// ------------------------------------
+@authenticate('jwt') // <---- Apply the @authenticate decorator at the class level
 export class NewUserMovieController {
   constructor(
     @repository(NewUserRepository) protected newUserRepository: NewUserRepository,
@@ -39,7 +42,7 @@ export class NewUserMovieController {
     },
   })
   async find(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Movie>,
   ): Promise<Movie[]> {
     return this.newUserRepository.movies(id).find(filter);
@@ -54,7 +57,7 @@ export class NewUserMovieController {
     },
   })
   async create(
-    @param.path.number('id') id: typeof NewUser.prototype.id,
+    @param.path.string('id') id: typeof NewUser.prototype.id,
     @requestBody({
       content: {
         'application/json': {
@@ -79,7 +82,7 @@ export class NewUserMovieController {
     },
   })
   async patch(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -102,7 +105,7 @@ export class NewUserMovieController {
     },
   })
   async delete(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Movie)) where?: Where<Movie>,
   ): Promise<Count> {
     return this.newUserRepository.movies(id).delete(where);
