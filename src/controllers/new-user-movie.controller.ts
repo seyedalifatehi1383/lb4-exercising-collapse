@@ -22,7 +22,10 @@ import {
 import {NewUserRepository} from '../repositories';
 // ---------- ADD IMPORTS -------------
 import {authenticate} from '@loopback/authentication';
+import {inject} from '@loopback/core';
 // ------------------------------------
+import {SecurityBindings, UserProfile ,securityId} from '@loopback/security';
+
 @authenticate('jwt') // <---- Apply the @authenticate decorator at the class level
 export class NewUserMovieController {
   constructor(
@@ -57,6 +60,8 @@ export class NewUserMovieController {
     },
   })
   async create(
+    @inject(SecurityBindings.USER)
+    currentUserProfile: UserProfile,
     @param.path.string('id') id: typeof NewUser.prototype.id,
     @requestBody({
       content: {
@@ -69,8 +74,9 @@ export class NewUserMovieController {
         },
       },
     }) movie: Omit<Movie, 'id'>,
-  ): Promise<Movie> {
-    return this.newUserRepository.movies(id).create(movie);
+  ): Promise<any> {
+    // return this.newUserRepository.movies(id).create(movie);
+    return currentUserProfile[securityId]
   }
 
   @patch('/new-users/{id}/movies', {
