@@ -68,7 +68,7 @@ export class MovieController {
       'application/json': {
         schema: {
           type: 'array',
-          items: getModelSchemaRef(Movie, {includeRelations: true}),
+          items: getModelSchemaRef(Movie, {includeRelations: true }),
         },
       },
     },
@@ -89,6 +89,7 @@ export class MovieController {
       content: {
         'application/json': {
           schema: getModelSchemaRef(Movie, {partial: true}),
+
         },
       },
     })

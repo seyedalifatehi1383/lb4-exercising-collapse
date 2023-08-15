@@ -30,6 +30,7 @@ import {
   requestBody,
   response,
   SchemaObject,
+  HttpErrors,
 } from '@loopback/rest';
 import {NewUser} from '../models';
 import {NewUserRepository} from '../repositories';
@@ -92,8 +93,11 @@ export class UserController {
           'application/json': {
             schema: {
               'x-ts-type': User,
+
             },
+
           },
+
         },
       },
     },
@@ -104,13 +108,15 @@ export class UserController {
         'application/json': {
           schema: getModelSchemaRef(NewUser, {
             title: 'NewUser',
+            exclude : ['realm' , 'emailVerified' , 'verificationToken' ]
           }),
         },
       },
     })
-    newUserRequest: NewUser,
-  ): Promise<User> {
-    const password = await hash(newUserRequest.password, await genSalt());
+    newUserRequest: Credentials,
+  ): Promise<User | object> {
+    if (newUserRequest.password.length >7 && newUserRequest.email.endsWith('@gmail.com')) {
+      const password = await hash(newUserRequest.password, await genSalt());
     const savedUser = await this.userRepository.create(
       _.omit(newUserRequest, 'password'),
     );
@@ -118,6 +124,9 @@ export class UserController {
     await this.userRepository.userCredentials(savedUser.id).create({password});
 
     return savedUser;
+    } else {
+      throw new HttpErrors.Forbidden('email is not valid or password is weak')
+    }
   }
 
 
@@ -143,7 +152,7 @@ export class UserController {
   })
   async login(
     @requestBody(CredentialsRequestBody) credentials: Credentials,
-  ): Promise<{token: string}> {
+  ): Promise<any> {
     // ensure the user exists, and the password is correct
     const user = await this.userService.verifyCredentials(credentials);
     // convert a User object into a UserProfile object (reduced set of properties)
@@ -151,7 +160,7 @@ export class UserController {
 
     // create a JSON Web Token based on the user profile
     const token = await this.jwtService.generateToken(userProfile);
-    return {token};
+    return {credentials , user , userProfile  };
   }
 
 

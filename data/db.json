@@ -1,16 +1,18 @@
 {
   "ids": {
-    "User": 3,
-    "UserCredentials": 3,
+    "User": 4,
+    "UserCredentials": 4,
     "NewUser": 1,
     "Movie": 6
   },
   "models": {
     "User": {
-      "1": "{\"id\":\"1\",\"realm\":\"Asia\",\"username\":\"Mohammad\",\"email\":\"mamalreza83@gmail.com\",\"emailVerified\":true,\"verificationToken\":\"string\",\"additionalProp1\":{}}"
+      "1": "{\"id\":\"1\",\"realm\":\"Asia\",\"username\":\"Mohammad\",\"email\":\"mamalreza83@gmail.com\",\"emailVerified\":true,\"verificationToken\":\"string\",\"additionalProp1\":{}}",
+      "3": "{\"id\":\"3\",\"realm\":\"Asia\",\"username\":\"test\",\"email\":\"test@gmail.com\",\"emailVerified\":true,\"verificationToken\":\"string\"}"
     },
     "UserCredentials": {
-      "52eff158-1831-4e05-988a-fadd1835aadb": "{\"id\":\"52eff158-1831-4e05-988a-fadd1835aadb\",\"password\":\"$2a$10$jr9xxLPm6bopN9gYWguHCO3tDKLKL2sqAfJyoTqX37uM42jngcGJO\",\"userId\":\"1\"}"
+      "52eff158-1831-4e05-988a-fadd1835aadb": "{\"id\":\"52eff158-1831-4e05-988a-fadd1835aadb\",\"password\":\"$2a$10$jr9xxLPm6bopN9gYWguHCO3tDKLKL2sqAfJyoTqX37uM42jngcGJO\",\"userId\":\"1\"}",
+      "c8d97121-ad37-45cb-b967-4d91ce279bf2": "{\"id\":\"c8d97121-ad37-45cb-b967-4d91ce279bf2\",\"password\":\"$2a$10$KrzHvtutE0qRZPn.qvE6eegUlL75GzVzAZwIOt.SdezzyJWXF74zq\",\"userId\":\"3\"}"
     },
     "NewUser": {},
     "Movie": {
