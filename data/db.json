@@ -1,20 +1,22 @@
 {
   "ids": {
-    "User": 5,
-    "UserCredentials": 5,
+    "User": 6,
+    "UserCredentials": 6,
     "NewUser": 1,
-    "Movie": 7
+    "Movie": 8
   },
   "models": {
     "User": {
       "1": "{\"id\":\"1\",\"realm\":\"Asia\",\"username\":\"Mohammad\",\"email\":\"mamalreza83@gmail.com\",\"emailVerified\":true,\"verificationToken\":\"string\",\"additionalProp1\":{}}",
       "3": "{\"id\":\"3\",\"realm\":\"Asia\",\"username\":\"test\",\"email\":\"test@gmail.com\",\"emailVerified\":true,\"verificationToken\":\"string\"}",
-      "11e89134-5aa5-4302-88df-2a618cf4b641": "{\"id\":\"11e89134-5aa5-4302-88df-2a618cf4b641\",\"email\":\"ali@gmail.com\"}"
+      "11e89134-5aa5-4302-88df-2a618cf4b641": "{\"id\":\"11e89134-5aa5-4302-88df-2a618cf4b641\",\"email\":\"ali@gmail.com\"}",
+      "8c1150e3-9c08-4e11-970e-51e25d917173": "{\"id\":\"8c1150e3-9c08-4e11-970e-51e25d917173\",\"email\":\"afatehi07@gmail.com\"}"
     },
     "UserCredentials": {
       "52eff158-1831-4e05-988a-fadd1835aadb": "{\"id\":\"52eff158-1831-4e05-988a-fadd1835aadb\",\"password\":\"$2a$10$jr9xxLPm6bopN9gYWguHCO3tDKLKL2sqAfJyoTqX37uM42jngcGJO\",\"userId\":\"1\"}",
       "c8d97121-ad37-45cb-b967-4d91ce279bf2": "{\"id\":\"c8d97121-ad37-45cb-b967-4d91ce279bf2\",\"password\":\"$2a$10$KrzHvtutE0qRZPn.qvE6eegUlL75GzVzAZwIOt.SdezzyJWXF74zq\",\"userId\":\"3\"}",
-      "db9b7814-c583-41d4-ab3c-9c8b18c85cab": "{\"id\":\"db9b7814-c583-41d4-ab3c-9c8b18c85cab\",\"password\":\"$2a$10$m3TinyoqzrEB27FwHQVQsOto.SLWF2U7ZoVRPzXKWtkZwzy46iixS\",\"userId\":\"11e89134-5aa5-4302-88df-2a618cf4b641\"}"
+      "db9b7814-c583-41d4-ab3c-9c8b18c85cab": "{\"id\":\"db9b7814-c583-41d4-ab3c-9c8b18c85cab\",\"password\":\"$2a$10$m3TinyoqzrEB27FwHQVQsOto.SLWF2U7ZoVRPzXKWtkZwzy46iixS\",\"userId\":\"11e89134-5aa5-4302-88df-2a618cf4b641\"}",
+      "a55678bb-2079-44c8-9a66-065e27849411": "{\"id\":\"a55678bb-2079-44c8-9a66-065e27849411\",\"password\":\"$2a$10$fCTZyoBq7ZJxIorW/Ar4JODfOOTfSe104wmKagEatFL.bOJ.zYoCe\",\"userId\":\"8c1150e3-9c08-4e11-970e-51e25d917173\"}"
     },
     "NewUser": {},
     "Movie": {
@@ -22,7 +24,8 @@
       "2": "{\"name\":\"avengers\",\"genre\":\"action\",\"director\":\"this is for test\",\"yearReleased\":2019,\"newUserId\":\"1\",\"id\":2}",
       "3": "{\"name\":\"openhimer\",\"genre\":\"action\",\"director\":\"new film\",\"yearReleased\":2023,\"newUserId\":\"1\",\"id\":3}",
       "4": "{\"name\":\"second patch\",\"genre\":\"takhayoli\",\"director\":\"this is about iron man\",\"yearReleased\":2004,\"newUserId\":\"2\",\"id\":4}",
-      "6": "{\"name\":\"sisu\",\"genre\":\"action\",\"director\":\"this is for test action\",\"yearReleased\":2004,\"newUserId\":\"11e89134-5aa5-4302-88df-2a618cf4b641\",\"id\":6}"
+      "6": "{\"name\":\"sisu\",\"genre\":\"action\",\"director\":\"this is for test action\",\"yearReleased\":2004,\"newUserId\":\"11e89134-5aa5-4302-88df-2a618cf4b641\",\"id\":6}",
+      "7": "{\"name\":\"sisu\",\"genre\":\"action\",\"director\":\"this is for test action\",\"yearReleased\":2004,\"newUserId\":\"8c1150e3-9c08-4e11-970e-51e25d917173\",\"id\":7}"
     }
   }
 }
