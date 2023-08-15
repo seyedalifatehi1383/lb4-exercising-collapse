@@ -124,5 +124,6 @@ export class NewUserMovieController {
     // @param.query.object('where', getWhereSchemaFor(Movie)) where?: Where<Movie>,
   ): Promise<Count> {
     return this.newUserRepository.movies(currentUserProfile[securityId]).delete({id : id});
+
   }
 }
