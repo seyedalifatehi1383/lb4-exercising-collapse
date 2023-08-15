@@ -21,7 +21,7 @@ export class MovieNewUserController {
     public movieRepository: MovieRepository,
   ) { }
 
-  @get('/movies/{id}/new-user', {
+  @get('/movies/{id}/s', {
     responses: {
       '200': {
         description: 'NewUser belonging to Movie',
@@ -34,7 +34,7 @@ export class MovieNewUserController {
     },
   })
   async getNewUser(
-    @param.path.number('id') id: typeof Movie.prototype.id,
+    @param.path.string('id') id: typeof Movie.prototype.id,
   ): Promise<NewUser> {
     return this.movieRepository.newUser(id);
   }

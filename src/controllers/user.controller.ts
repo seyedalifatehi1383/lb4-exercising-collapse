@@ -91,10 +91,10 @@ export class UserController {
         description: 'User',
         content: {
           'application/json': {
-            schema: {
-              'x-ts-type': User,
-
-            },
+            schema: getModelSchemaRef(NewUser ,{
+              // 'x-ts-type': User,
+              exclude : ['realm' , 'password' , 'emailVerified' , 'verificationToken']
+            }),
 
           },
 
@@ -103,22 +103,23 @@ export class UserController {
     },
   })
   async signUp(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(NewUser, {
-            title: 'NewUser',
-            exclude : ['realm' , 'emailVerified' , 'verificationToken' ]
-          }),
-        },
-      },
-    })
-    newUserRequest: Credentials,
-  ): Promise<User | object> {
+    // @requestBody({
+    //   content: {
+    //     'application/json': {
+    //       schema: getModelSchemaRef(NewUser, {
+    //         title: 'NewUser',
+
+    //       }),
+    //     },
+    //   },
+    // })
+    @requestBody(CredentialsRequestBody) newUserRequest : Credentials
+    // newUserRequest: NewUser,
+  ): Promise<Credentials | object> {
     if (newUserRequest.password.length >7 && newUserRequest.email.endsWith('@gmail.com')) {
       const password = await hash(newUserRequest.password, await genSalt());
     const savedUser = await this.userRepository.create(
-      _.omit(newUserRequest, 'password'),
+      _.omit(newUserRequest, 'realm' , 'password' , 'emailVerified' ,'verificationToken'),
     );
 
     await this.userRepository.userCredentials(savedUser.id).create({password});
@@ -160,7 +161,7 @@ export class UserController {
 
     // create a JSON Web Token based on the user profile
     const token = await this.jwtService.generateToken(userProfile);
-    return {credentials , user , userProfile  };
+    return {token };
   }
 
 
